@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 
-export default function Detail() {
+export default function Detail(props) {
 
-  const [movies, setMovies] = useState([]);
+  const movie = props.navigation.getParam('movie', null)
 
-  useEffect(() => {
-    fetch('http://192.168.1.122:8000/api/movies/', {
-      method: 'GET',
-      headers: {
-        'Authorization' : `Token a4db63b236737f5d5fe06163a57b83a797ab55e7`
-      }
-    })
-    .then( resp => resp.json())
-    .then( jsonResp => setMovies(jsonResp) )
-    .catch( err => console.log(err));
-  }, [])
+  
 
   return (
     <View>
 
-      <Text>Details</Text>
+      <Text>Details about {movie.title}</Text>
     </View>
   );
 }
