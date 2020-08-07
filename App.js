@@ -13,7 +13,6 @@ YellowBox.ignoreWarnings(['Remote debugger']);
 const AppNavigator = createStackNavigator({
   MovieList: {screen: MovieList},
   Detail: {screen: Detail},
-
 })
 
 const App = createAppContainer(AppNavigator);

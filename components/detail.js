@@ -5,35 +5,46 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 export default function Detail(props) {
 
-  const movie = props.navigation.getParam('movie', null)
+  const movie = props.navigation.getParam('movie', null);
 
-  
 
   return (
-    <View>
+    <View style={styles.container}>
 
-      <Text>{movie.title}</Text>
       <View style={styles.starContainer}>
-        <FontAwesomeIcon style={movie.average_rating > 0 ? styles.orange : styles.black } icon={faStar}/>
-        <FontAwesomeIcon style={movie.average_rating > 1 ? styles.orange : styles.black } icon={faStar}/>
-        <FontAwesomeIcon style={movie.average_rating > 2 ? styles.orange : styles.black } icon={faStar}/>
-        <FontAwesomeIcon style={movie.average_rating > 3 ? styles.orange : styles.black } icon={faStar}/>
-        <FontAwesomeIcon style={movie.average_rating > 4 ? styles.orange : styles.black } icon={faStar}/>
-        <Text>({movie.number_of_ratings})</Text>
+        <FontAwesomeIcon style={movie.average_rating > 0 ? styles.orange : styles.white } icon={faStar}/>
+        <FontAwesomeIcon style={movie.average_rating > 1 ? styles.orange : styles.white } icon={faStar}/>
+        <FontAwesomeIcon style={movie.average_rating > 2 ? styles.orange : styles.white } icon={faStar}/>
+        <FontAwesomeIcon style={movie.average_rating > 3 ? styles.orange : styles.white } icon={faStar}/>
+        <FontAwesomeIcon style={movie.average_rating > 4 ? styles.orange : styles.white } icon={faStar}/>
+        <Text style={styles.white}>({movie.number_of_ratings})</Text>
       </View>
       
       
-      <Text>{movie.description}</Text>
+      <Text style={styles.description}>{movie.description}</Text>
     </View>
   );
 }
 
+Detail.navigationOptions = screenProps => ({
+  //title: 'hi',
+  title: screenProps.navigation.getParam('title'),
+  headerStyle: {
+    backgroundColor: '#444',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    justifyContent: 'center',
+  }
+})
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#282C35',
+    padding: 10,
   },
   item : {
     flex: 1,
@@ -55,7 +66,13 @@ const styles = StyleSheet.create({
   orange : {
     color: 'orange',
   },
-  black : {
-    color: 'black',
+  white : {
+    color: 'white',
+  },
+  description : {
+    fontSize: 20,
+    color: '#fff',
+    padding: 10,
   }
+
 });
